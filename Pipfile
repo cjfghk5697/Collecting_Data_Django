@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+app = "==0.0.1"
+astroid = "==2.5.2"
+cffi = "==1.14.5"
+click = "==7.1.2"
+colorama = "==0.4.4"
+cryptography = "==3.4.7"
+isort = "==5.8.0"
+itsdangerous = "==1.1.0"
+lazy-object-proxy = "==1.6.0"
+mccabe = "==0.6.1"
+pycparser = "==2.20"
+pylint = "==2.7.2"
+six = "==1.15.0"
+toml = "==0.10.2"
+wrapt = "==1.12.1"
+Flask = "==1.1.2"
+Jinja2 = "==2.11.3"
+MarkupSafe = "==1.1.1"
+PyMySQL = "==1.0.2"
+pyOpenSSL = "==20.0.1"
+Werkzeug = "==1.0.1"
+django = "==2.2.5"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
