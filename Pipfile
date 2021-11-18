@@ -26,6 +26,8 @@ PyMySQL = "==1.0.2"
 pyOpenSSL = "==20.0.1"
 Werkzeug = "==1.0.1"
 django = "==2.2.5"
+django-seed = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
