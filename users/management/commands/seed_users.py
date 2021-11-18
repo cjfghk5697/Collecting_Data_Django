@@ -18,5 +18,6 @@ class Command(BaseCommand):
             'is_staff': False,
             'is_superuser': False
         })
+        # python manage.py seed_users --numbers 50
         seeder.execute()
         self.stdout.write(self.style.SUCCESS(f'{number} users created'))
