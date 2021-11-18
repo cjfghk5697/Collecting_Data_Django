@@ -1,8 +1,11 @@
 from django.contrib.auth.models import AbstractUser
-from django import forms
+from django.db import models
 # Create your models here.
+
+
 class User(AbstractUser):
-    stu_id=forms.IntegerField(label="Student ID",required=True) 
-    name=forms.CharField(label="Name",required=True)
-    email=forms.EmailField(label="E-mail",required=True)
-    number=forms.IntegerField(label="Phone Number",required=True)
+    stu_id = models.IntegerField(null=True)
+    name = models.CharField(max_length=80, null=True)
+    email = models.EmailField(null=True)
+    number = models.IntegerField(null=True)
+    member = models.BooleanField(null=True, default=False)
