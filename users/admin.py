@@ -10,10 +10,10 @@ class CustomUserAdmin(admin.ModelAdmin):
         "stu_id",
         "name",
         "email",
-        "number",
+        "phone_number",
         "member",
     )
-    fieldsets = UserAdmin.fieldsets + (
+    fieldsets = (
         (
             "Custom Profile",
             {
