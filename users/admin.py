@@ -8,17 +8,19 @@ from . import models
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
         "stu_id",
-        "name",
-        "email",
         "phone_number",
         "member",
+        "email",
     )
     fieldsets = (
         (
             "Custom Profile",
             {
                 "fields": (
+                    "stu_id",
+                    "phone_number",
                     "member",
+                    "email",
                 ),
             },
         ),

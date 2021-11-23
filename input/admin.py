@@ -1,29 +1,20 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 from . import models
 
 # Register your models here.
 
 
-@admin.register(models.Inputs)
+@admin.register(models.Input)
 class InputAdmin(admin.ModelAdmin):
     list_display = (
         "cat_name",
-        "decription",
-        "host"
+        "host",
+        "__str__",
+        "get_thumbnail",
     )
 
-    fieldsets = (
-        (
-            "Cat Profile",
-            {
-                "fields": (
-                    "cat_name",
-                ),
-            },
-        ),
-    )
+    def get_thumbnail(self, obj):
+        return mark_safe(f'<img width="50px" src="{obj.file.url}" />')
 
-
-@admin.register(models.Photo)
-class PhotoAdmin(admin.ModelAdmin):
-    pass
+    get_thumbnail.short_description = "Thumbnail"
