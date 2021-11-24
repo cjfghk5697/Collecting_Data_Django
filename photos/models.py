@@ -3,12 +3,11 @@ from django.db import models
 
 from core import models as core_models
 from users import models as user_models
-
 # Create your models here.
 
 
-class Input(core_models.TimeStampModel):
-    """Input Model Definition"""
+class Photo(core_models.TimeStampModel):
+    """Photo Model Definition"""
     CAT_HAK = "학치"
     CAT_BBI = "삐약이"
     CAT_MOK = "목주"

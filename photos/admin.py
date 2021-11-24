@@ -2,10 +2,8 @@ from django.contrib import admin
 from django.utils.html import mark_safe
 from . import models
 
-# Register your models here.
 
-
-@admin.register(models.Input)
+@admin.register(models.Photo)
 class InputAdmin(admin.ModelAdmin):
     list_display = (
         "cat_name",
