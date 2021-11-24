@@ -1,3 +1,14 @@
 {% extends "base.html" %}
 
-<h3>The Cat Photos All..{{all_cats}}</h3>
+{% block page_name %}
+Home
+{% endblock page_name %}
+
+<h3>The Cat Photos All..{{count_cats}}</h3>
+
+{% block content %}
+    {% for cat in all_cats %}
+        {{ cat.file }}
+        <h3>{{cat.description}}</h3>
+    {% endfor %}
+{% endblock content %}

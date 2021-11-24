@@ -8,7 +8,6 @@ from . import models
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
         "stu_id",
-        "phone_number",
         "member",
         "email",
     )
@@ -18,7 +17,6 @@ class CustomUserAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "stu_id",
-                    "phone_number",
                     "member",
                     "email",
                 ),

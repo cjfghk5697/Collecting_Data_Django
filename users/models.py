@@ -5,7 +5,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-    stu_id = models.IntegerField(null=True, blank=True)
-    phone_number = models.IntegerField(null=True, blank=True)
+    stu_id = models.IntegerField(blank=True, default=False)
     member = models.BooleanField(default=False)
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(blank=True, default=False)
