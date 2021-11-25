@@ -20,6 +20,7 @@ class PhotoAdmin(admin.ModelAdmin):
 class FileAdmin(admin.ModelAdmin):
     list_display = (
         "file",
+        "photo",
     )
 
     def get_thumbnail(self, obj):

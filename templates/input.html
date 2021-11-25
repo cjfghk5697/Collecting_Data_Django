@@ -4,11 +4,19 @@
 Home
 {% endblock page_name %}
 
-<h3>The Cat Photos All..{{count_cats}}</h3>
 
 {% block content %}
-    {% for cat in all_cats %}
-        {{ cat.file }}
-        <h3>{{cat.description}}</h3>
+    {% for cat in page.object_list %}
+        <h3>{{ cat.cat_name }}/{{ cat.description }}</h3>
     {% endfor %}
+
+    <h5>
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">Previous</a>
+        {% endif %}
+        Page{{ page.number }} of {{ page.paginator.num_pages }}
+        {% if page.has_next %}
+            <a href="?page{{ page.next_page_number }}">Next</a>
+        {% endif %}    
+    </h5>
 {% endblock content %}

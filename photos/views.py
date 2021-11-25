@@ -1,17 +1,16 @@
+from django.core import paginator
 from django.shortcuts import render
-from datetime import datetime
 from . import models
+from django.core.paginator import Paginator
 # Create your views here.
 
 
 def all_cats(request):
-
-    now = datetime.now()
-    count_cats = models.Photo.objects.all().count()
-    all_cats = models.File.objects.all()
+    page = request.GET.get("page", 1)
+    cat_list = models.Photo.objects.all()
+    paginator = Paginator(cat_list, 10, orphans=5)
+    cats = paginator.get_page(int(page))
 
     return render(request, "input.html", context={
-        'now': now,
-        'all_cats': all_cats,
-        'count_cats': count_cats,
+        "page": cats
     })
