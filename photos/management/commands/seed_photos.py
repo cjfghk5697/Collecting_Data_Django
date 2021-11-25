@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from photos.models import Photo as photo_model
+from photos import models as photo_model
 from django_seed import Seed
 from django.contrib.admin.utils import flatten
 from users import models as user_models
@@ -28,18 +28,17 @@ class Command(BaseCommand):
                        CAT_UNKNOWN,
                        ]
         seeder = Seed.seeder()
-        seeder.add_entity(photo_model, number, {
+        seeder.add_entity(photo_model.Photo, number, {
             "cat_name": lambda x: random.choice(CAT_CHOICES),
-            "host": lambda x: random.choice(all_users),
             "description": lambda x: seeder.faker.sentence(),
         })
         # python manage.py seed_users --numbers 50
         created_photos = seeder.execute()
         created_clean = flatten(list(created_photos.values()))
         for pk in created_clean:
-            photo = photo_model.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 30)):
-                photo_model.objects.create(
-                    file=f"room_photos/{random.randint(1, 31)}.webp",
-                )
+            photo = photo_model.Photo.objects.get(pk=pk)
+            photo_model.File.objects.create(
+                photo=photo,
+                file=f"room_photos/{random.randint(1, 31)}.webp",
+            )
         self.stdout.write(self.style.SUCCESS(f'{number} photos created'))

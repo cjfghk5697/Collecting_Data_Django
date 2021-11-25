@@ -8,7 +8,7 @@ def all_cats(request):
 
     now = datetime.now()
     count_cats = models.Photo.objects.all().count()
-    all_cats = models.Photo.objects.all()
+    all_cats = models.File.objects.all()
 
     return render(request, "input.html", context={
         'now': now,
