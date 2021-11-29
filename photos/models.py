@@ -1,7 +1,7 @@
 import os
 from django.db import models
 from django.db.models.deletion import CASCADE
-
+from django.urls import reverse
 from core import models as core_models
 from users import models as user_models
 # Create your models here.
@@ -25,6 +25,9 @@ class Photo(core_models.TimeStampModel):
 
     def __str__(self):
         return self.description
+
+    def get_absolute_url(self):
+        return reverse("photos:detail")
 
 
 class File(core_models.TimeStampModel):
