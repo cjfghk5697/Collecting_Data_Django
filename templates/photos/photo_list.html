@@ -7,7 +7,11 @@ Home
 
 {% block content %}
     {% for photo in photos %}
-        <h1>{{photo.cat_name}} / {{photo.description}}</h1>
+        <h3>
+            <a href="{% url "photos:detail" photo.pk %}">
+                {{photo.cat_name}} / {{photo.description}}
+            </a> 
+        </h3>
     {% endfor %}
     <h5>
     {%if page_obj.has_previous %}
