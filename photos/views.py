@@ -1,9 +1,5 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from . import models
-from django.shortcuts import render, redirect
-from django.db.models import ObjectDoesNotExist
-from django.urls import reverse
-from django.http import Http404
 
 
 class HomeView(ListView):
@@ -16,10 +12,6 @@ class HomeView(ListView):
     context_object_name = "photos"
 
 
-def photos_detail(request, pk):
-    # pk not important pk가 potatoㄷ 될수 있음
-    try:
-        photo = models.Photo.objects.get(pk=pk)
-        return render(request, "photos/detail.html", {'photo': photo})
-    except models.Photo.DoesNotExist:
-        raise Http404()
+class PhotoDetail(DetailView):
+    """PhotoDetail Definition"""
+    model = models.Photo
