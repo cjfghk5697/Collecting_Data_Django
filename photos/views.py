@@ -10,3 +10,5 @@ class HomeView(ListView):
     paginate_by = 10
     paginate_orphans = 5
     ordering = "created"
+
+    context_object_name = "photos"
