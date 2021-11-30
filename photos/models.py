@@ -27,7 +27,7 @@ class Photo(core_models.TimeStampModel):
         return self.description
 
     def get_absolute_url(self):
-        return reverse("photos:detail")
+        return reverse("photos:detail", kwargs={"pk": self.pk})
 
 
 class File(core_models.TimeStampModel):
