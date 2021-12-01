@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.shortcuts import render
 from . import models
 
 
@@ -15,3 +16,9 @@ class HomeView(ListView):
 class PhotoDetail(DetailView):
     """PhotoDetail Definition"""
     model = models.Photo
+
+
+def search(request):
+    cat = request.GET.get("cat")
+    cat = str.capitalize(cat)
+    return render(request, "photos/search.html", {"cat": cat})

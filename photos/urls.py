@@ -5,5 +5,6 @@ app_name = "photos"
 
 
 urlpatterns = [
-    path("<int:pk>", views.PhotoDetail.as_view(), name="detail")
+    path("<int:pk>", views.PhotoDetail.as_view(), name="detail"),
+    path("search", views.search, name="search"),
 ]

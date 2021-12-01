@@ -3,5 +3,7 @@
     <ul>
         <li><a href="#">Login</a></li>
     </ul>
-
+    <form method="get" action="{% url "photos:search" %}">
+        <input name="cat" placeholder="Search Cat" />
+    </form>
 </header>
