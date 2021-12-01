@@ -6,8 +6,14 @@
     <title>{% block page_title %}{% endblock page_title %}</title>
   </head> 
   <body>
-    {% include "partials/header.html" %}
-    
+    <header>
+    {% include "partials/nav.html" %}
+    {% block search-bar %}
+      <form method="get" action="{% url "photos:search" %}">
+        <input name="cat" placeholder="Search Cat" />
+      </form>
+    {% endblock search-bar %}
+    </header>
     {% block content %} {% endblock %}
 
     {% include "partials/footer.html" %}

@@ -4,8 +4,24 @@
 Search
 {% endblock page_title %}
 
+{% block search-bar %}
+{% endblock search-bar %}
+
 {% block content %}
     <h2>Search!</h2>
-    <h4>Searching by {{cat}}</h4>
+
+    <form method="get" action="{% url "photos:search" %}">
+        <div>
+            <label for="cat">Cat</label>
+            <input value="{{cat}}" id="cat" name="cat" placeholder="Search Cat" />
+        </div>
+        
+        <button>Search</button>
+    </form>
+
+    <h3>Results</h3>
+    {% for photo in photos %}
+        <h3>{{photo.cat_name}}</h3>
+    {% endfor %}
 
 {% endblock content %}

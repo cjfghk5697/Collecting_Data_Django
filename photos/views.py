@@ -19,6 +19,16 @@ class PhotoDetail(DetailView):
 
 
 def search(request):
-    cat = request.GET.get("cat")
+    cat = request.GET.get("cat", "Anycat")
     cat = str.capitalize(cat)
-    return render(request, "photos/search.html", {"cat": cat})
+
+    filter_args = {}
+    form = {
+        "cat": cat,
+    }
+
+    if cat != "Anycat":
+        filter_args["cat__startswith"] = cat
+    photos = models.Photo.objects.filter(**filter_args)
+
+    return render(request, "photos/search.html", {**form, "photos": photos})
