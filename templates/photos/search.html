@@ -12,15 +12,15 @@ Search
 
     <form method="get" action="{% url "photos:search" %}">
         <div>
-            <label for="cat">Cat</label>
-            <input value="{{cat}}" id="cat" name="cat" placeholder="Search Cat" />
+            <label for="cat_name">Cat</label>
+            <input value="{{cat_name}}" id="cat_name" name="cat_name" placeholder="Search Cat" />
         </div>
         
         <button>Search</button>
     </form>
 
     <h3>Results</h3>
-    {% for photo in photos %}
+    {% for photo in photo1 %}
         <h3>{{photo.cat_name}}</h3>
     {% endfor %}
 
