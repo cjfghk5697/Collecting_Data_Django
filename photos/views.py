@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render
 from . import models, forms
+global pho
 
 
 class HomeView(ListView):
@@ -23,16 +24,16 @@ class SearchView(View):
     def get(self, request):
 
         form = forms.SearchForm(request.GET)
-
         if form.is_valid():
 
-            cat = form.cleaned_data.get("cat")
+            cat_name = form.cleaned_data.get("cat_name")
             filter_args = {}
 
-            if cat != "Anywhere":
-                filter_args["cat__startswith"] = cat
-            photos = models.Photo.objects.filter(**filter_args)
-        else:
-            form = forms.SearchForm()
+            if cat_name != "Anycat":
+                filter_args["cat_name__startswith"] = cat_name
 
-        return render(request, "photos/search.html", {"form": form, "photos": photos})
+            photos1 = models.Photo.objects.filter(**filter_args)
+
+        form = forms.SearchForm()
+
+        return render(request, "photos/search.html", {"form": form, "photos": photos1})

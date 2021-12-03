@@ -3,4 +3,4 @@ from . import models
 
 
 class SearchForm(forms.Form):
-    cat = forms.CharField(initial="Anycat")
+    cat_name = forms.CharField(initial="Anycat")
