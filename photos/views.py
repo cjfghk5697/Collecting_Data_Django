@@ -32,8 +32,8 @@ class SearchView(View):
             if cat_name != "Anycat":
                 filter_args["cat_name__startswith"] = cat_name
 
-            photos1 = models.Photo.objects.filter(**filter_args)
+            photo1 = models.Photo.objects.filter(**filter_args)
 
         form = forms.SearchForm()
 
-        return render(request, "photos/search.html", {"form": form, "photos": photos1})
+        return render(request, "photos/search.html", {"form": form, "photo1": photo1})
