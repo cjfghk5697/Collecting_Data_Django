@@ -1,7 +1,6 @@
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render
 from . import models, forms
-global pho
 
 
 class HomeView(ListView):
