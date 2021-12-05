@@ -29,12 +29,12 @@ class Photo(core_models.TimeStampModel):
     def get_absolute_url(self):
         return reverse("photos:detail", kwargs={"pk": self.pk})
 
+    def first_photo(self):
+        photo, = self.photos.all()[:1]
+        return photo.file.url
+
 
 class File(core_models.TimeStampModel):
     file = models.ImageField(upload_to="cat_photos")
     photo = models.ForeignKey(
         "Photo", related_name="photos", on_delete=models.CASCADE)
-
-    def first_photo(self):
-        photo, = self.file.all()[:1]
-        return photo.file.url
