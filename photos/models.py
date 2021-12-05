@@ -32,4 +32,9 @@ class Photo(core_models.TimeStampModel):
 
 class File(core_models.TimeStampModel):
     file = models.ImageField(upload_to="cat_photos")
-    photo = models.ForeignKey("Photo", on_delete=models.CASCADE)
+    photo = models.ForeignKey(
+        "Photo", related_name="photos", on_delete=models.CASCADE)
+
+    def first_photo(self):
+        photo, = self.file.all()[:1]
+        return photo.file.url
