@@ -6,6 +6,12 @@ Home
 
 
 {% block content %}
+
+    <div class="container rounded-xl mx-auto bg-gray-800  h-50vh mt-32 mb-24 bg-cover bg-center" style="background-image:url(https://www.ixpap.com/images/2021/03/cat-wallpaper-ixpap.jpg)">
+
+
+
+    </div>
     {% for photo in photos %}
         <h3>
             <a href="{% url "photos:detail" photo.pk %}">
