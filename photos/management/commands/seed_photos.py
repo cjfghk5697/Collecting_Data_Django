@@ -39,6 +39,6 @@ class Command(BaseCommand):
             photo = photo_model.Photo.objects.get(pk=pk)
             photo_model.File.objects.create(
                 photo=photo,
-                file=f"room_photos/{random.randint(1, 31)}.webp",
+                file=f"seed_file/{random.randint(1, 15)}.jpg",
             )
         self.stdout.write(self.style.SUCCESS(f'{number} photos created'))
