@@ -11,8 +11,10 @@ Search
     <h2>Search!</h2>
 
     <form method="get" action="{% url "photos:search" %}">
-        {{form.as_p}}
-        <button>Search</button>
+    <div>
+        <label for="cat_name">Cat</label>
+        <input value="{{cat_name}}" id="cat_name" name="cat_name" placeholder="Search Cat" />
+    </div>
     </form>
 
     <h3>Results</h3>

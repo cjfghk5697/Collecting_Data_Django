@@ -23,16 +23,18 @@ class SearchView(View):
     def get(self, request):
 
         form = forms.SearchForm(request.GET)
+
         if form.is_valid():
 
             cat_name = form.cleaned_data.get("cat_name")
             filter_args = {}
 
-            if cat_name != "Anycat":
-                filter_args["cat_name__startswith"] = cat_name
+            filter_args["cat_name__startswith"] = cat_name
 
             photo1 = models.Photo.objects.filter(**filter_args)
 
-        form = forms.SearchForm()
+            return render(request, "photos/search.html", {"form": form, "photo1": photo1})
+        else:
 
-        return render(request, "photos/search.html", {"form": form, "photo1": photo1})
+            form = forms.SearchForm()
+            return render(request, "photos/search.html", {"form": form, "photo1": photo1})
