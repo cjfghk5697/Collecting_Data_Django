@@ -8,7 +8,7 @@ from . import forms
 class LoginView(FormView):
     template_name = "users/login.html"
     form_class = forms.LoginForm
-    success_url = reverse_lazy("core:home")
+    success_url = reverse_lazy("core:cats")
 
     def form_valid(self, form):
         email = form.cleaned_data.get("email")
@@ -21,13 +21,13 @@ class LoginView(FormView):
 
 def log_out(request):
     logout(request)
-    return redirect(reverse("core:home"))
+    return redirect(reverse("core:cats"))
 
 
 class SignUpView(FormView):
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
-    success_url = reverse_lazy("core:home")
+    success_url = reverse_lazy("core:cats")
     initial = {"stu_id": "20xxxxxxx", "email": "itn@las.com"}
 
     def form_valid(self, form):
