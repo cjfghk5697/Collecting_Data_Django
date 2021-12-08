@@ -29,8 +29,6 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("stu_id", "email")
         widgets = {
-            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
-            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
             "email": forms.EmailInput(attrs={"placeholder": "Email Name"}),
         }
 
