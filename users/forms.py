@@ -7,8 +7,11 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self):
-        email = self.cleaned_data.get("email")
-        password = self.cleaned_data.get("password")
+        email = forms.EmailField(widget=forms.EmailInput(
+            attrs={"placeholder": "Email"}))
+        password = forms.CharField(
+            widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+        )
         try:
             user = models.User.objects.get(email=email)
             if user.check_password(password):
@@ -25,9 +28,18 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("stu_id", "email")
-    password = forms.CharField(widget=forms.PasswordInput)
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email Name"}),
+        }
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+    )
     password1 = forms.CharField(
-        widget=forms.PasswordInput, label="Confirm Password")
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password"})
+    )
 
     def clean_password1(self):
         password = self.cleaned_data.get("password")

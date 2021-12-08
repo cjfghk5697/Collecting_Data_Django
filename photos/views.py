@@ -37,4 +37,4 @@ class SearchView(View):
         else:
 
             form = forms.SearchForm()
-            return render(request, "photos/search.html", {"form": form, "photo1": photo1})
+            return render(request, "photos/search.html", {"form": form})
