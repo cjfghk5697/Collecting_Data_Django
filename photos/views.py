@@ -1,6 +1,8 @@
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render
 from . import models, forms
+from django.views.generic import FormView
+from django.urls import reverse_lazy
 
 
 class HomeView(ListView):
@@ -38,3 +40,14 @@ class SearchView(View):
 
             form = forms.SearchForm()
             return render(request, "photos/search.html", {"form": form})
+
+
+class UploadView(FormView):
+    template_name = "photos/upload.html"
+    form_class = forms.FileUploadForm
+
+    success_url = reverse_lazy("core:cats")
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

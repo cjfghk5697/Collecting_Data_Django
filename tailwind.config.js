@@ -1,4 +1,4 @@
-module.exports = {
+xmodule.exports = {
     theme: {
       extend: {
         spacing: {
