@@ -3,6 +3,7 @@ from django.shortcuts import render
 from . import models, forms
 from django.views.generic import FormView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 
 class HomeView(ListView):
@@ -31,15 +32,19 @@ class SearchView(View):
             cat_name = form.cleaned_data.get("cat_name")
             filter_args = {}
 
-            filter_args["cat_name__startswith"] = cat_name
+            filter_args["cat_name"] = cat_name
 
             photo1 = models.Photo.objects.filter(**filter_args)
 
-            return render(request, "photos/search.html", {"form": form, "photo1": photo1})
+            paginator = Paginator(photo1, 10, orphans=5)
+            page = request.GET.get("page", 1)
+
+            photos = paginator.get_page(page)
+            return render(request, "photos/search.html", {"form": form, "photos": photos})
         else:
 
             form = forms.SearchForm()
-            return render(request, "photos/search.html", {"form": form})
+        return render(request, "photos/search.html", {"form": form})
 
 
 class UploadView(FormView):
