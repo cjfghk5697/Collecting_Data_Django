@@ -6,17 +6,29 @@ Search
 
 
 {% block content %}
-    <h2>Search!</h2>
+    <div class="container mx-auto pb-10">
+        <div class="rounded-xl bg-gray-800  -mx-40  h-50vh mt-32 mb-24 bg-cover bg-center" style="background-image:url(https://assets.weforum.org/article/image/large_oJiIJtxAsQSP1eYnpNTTIMzjYoCmJo1oiC1mx2jWlN4.jpg)"></div>
+        
+        <div class="flex flex-wrap -mx-40 mb-10">
+            {% for photo in photos  %}
+                {% include 'partials/photo_card.html' with photo=photo %}
+            {% endfor %}
+        </div>
+        <div class="flex items-center justify-center mx-auto container">
+        {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}" class="text-teal-500">
+                <i class="fas fa-arrow-left fa-lg"></i>
+            </a>
+        {% endif %}
 
-    <form method="get" action="{% url "photos:search" %}">
-        {{form.as_p}}
-        <button>Search</button>
-    </form>
+        <span class="mx-3 font-medium text-lg">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
 
-    <h3>Results</h3>
+        {% if page_obj.has_next  %}
+            <a href="?page={{page_obj.next_page_number}}" class="text-teal-500">
+                <i class="fas fa-arrow-right fa-lg"></i>
+            </a>
+        {% endif %}
+    </div>    
 
-    {% for photo in photos %}
-        <h3>{{photo.cat_name}}</h3>
-    {% endfor %}
-
+</div>
 {% endblock content %}
