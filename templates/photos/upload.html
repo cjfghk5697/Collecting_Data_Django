@@ -4,18 +4,16 @@
     Upload Image
 {% endblock page_title %}
 
-{% block search-bar %}
-{% endblock search-bar %}
 
-{% block content %}
-<div class="container flex flex-col items-center border p-6 border-gray-400">
-    <form method="POST" action="{% url "core:cats" %}">
+
+{% block content %} 
+<div class="container mx-auto flex flex-col items-center">
+    <form method="POST" action="{% url "photos:upload" %}">
         {% csrf_token %}
         <div class="mb-8">{{form.cat_name}}</div>
         <div class="mb-8">{{form.file}}</div>
 
         <button class="btn bg-red-500 text-white hover:shadow-lg">Upload Image</button>
     </form>
-
 </div>
 {% endblock content %} 

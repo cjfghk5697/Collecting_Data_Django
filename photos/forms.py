@@ -27,6 +27,7 @@ class FileUploadForm(forms.Form):
     cat_name = forms.ChoiceField(
         choices=CAT_CHOICES)
     file = forms.ImageField()
+    title = forms.CharField()
 
     def save(self, *args, **kwargs):
         photo = super().save(commit=False)
