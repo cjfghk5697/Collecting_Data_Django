@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import ChoiceWidget, FileInput
 from . import models
 
 
@@ -26,8 +27,10 @@ class FileUploadForm(forms.Form):
     )
     cat_name = forms.ChoiceField(
         choices=CAT_CHOICES)
-    file = forms.ImageField()
-    title = forms.CharField()
+    file = forms.ImageField(widget=forms.FileInput(
+        attrs={"placeholder": "File"}))
+    title = forms.CharField(widget=forms.TextInput(attrs={
+                            "placeholder": "Title"}))
 
     def save(self, *args, **kwargs):
         photo = super().save(commit=False)

@@ -3,15 +3,16 @@ from . import models
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={"placeholder": "Email"}))
+    password = forms.CharField(widget=forms.PasswordInput(
+                               attrs={"placeholder": "Password"}))
 
     def clean(self):
         email = forms.EmailField(widget=forms.EmailInput(
             attrs={"placeholder": "Email"}))
-        password = forms.CharField(
-            widget=forms.PasswordInput(attrs={"placeholder": "Password"})
-        )
+        password = forms.CharField(widget=forms.PasswordInput(
+            attrs={"placeholder": "Password"}))
         try:
             user = models.User.objects.get(email=email)
             if user.check_password(password):
@@ -29,6 +30,7 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("stu_id", "email")
         widgets = {
+            "stu_id": forms.NumberInput(attrs={"placeholder": "Student ID"}),
             "email": forms.EmailInput(attrs={"placeholder": "Email Name"}),
         }
 

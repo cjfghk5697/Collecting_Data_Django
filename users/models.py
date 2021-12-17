@@ -7,4 +7,4 @@ from django.db import models
 class User(AbstractUser):
     stu_id = models.IntegerField(blank=True, default=False)
     member = models.BooleanField(default=False)
-    email = models.EmailField(blank=True, default=False)
+    email = models.EmailField(blank=True)
