@@ -18,6 +18,13 @@ class LoginView(FormView):
             login(self.request, user)
         return super().form_valid(form)
 
+    def get_success_url(self):
+        next_arg = self.request.GET.get("next")
+        if next_arg is not None:
+            return next_arg
+        else:
+            return reverse("core:cats")
+
 
 def log_out(request):
     logout(request)
