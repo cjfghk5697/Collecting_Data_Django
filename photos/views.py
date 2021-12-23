@@ -4,6 +4,7 @@ from . import models, forms
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from .models import Photo, File
 
 
 class HomeView(ListView):
@@ -53,6 +54,22 @@ class UploadView(FormView):
 
     success_url = reverse_lazy("core:cats")
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+
+def create(request):
+    if(request.method == 'POST'):
+        post = Photo()
+        post.cat_name = request.POST['cat_name']
+        post.description = request.POST['description']
+        post.save()
+        # name 속성이 imgs인 input 태그로부터 받은 파일들을 반복문을 통해 하나씩 가져온다
+
+        # Photo 객체를 하나 생성한다.
+        photo = File()
+        # 외래키로 현재 생성한 Post의 기본키를 참조한다.
+        photo.photo = post
+        # imgs로부터 가져온 이미지 파일 하나를 저장한다.
+        photo.file = request.FILES['imgs']
+        # 데이터베이스에 저장
+        photo.save()
+
+    return render(request, 'photos/upload.html')

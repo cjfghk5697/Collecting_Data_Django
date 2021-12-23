@@ -8,12 +8,18 @@
 
 {% block content %} 
 <div class="container mx-auto flex flex-col items-center">
-    <form method="POST" action="{% url "photos:upload" %}">
+    <form method="POST" action="{% url "photos:upload" %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-8">{{form.cat_name}}</div>
-        <div class="mb-8">{{form.file}}</div>
+        <select name="cat_name">
+            <option value="모름">모름</option>
+            <option value="학치">학치</option>
+            <option value="목주">목주</option>
+            <option value="삐약이">삐약이</option>
+        </select>        
+        <input class="mb-3" type="text" name="description">
+        <input class="mb-8" type="file" name="imgs" multiple>
+        <input class="btn bg-red-500 text-white" type="submit" value="이미지 올리기">
 
-        <button class="btn bg-red-500 text-white hover:shadow-lg">Upload Image</button>
     </form>
 </div>
 {% endblock content %} 

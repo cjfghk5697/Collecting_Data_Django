@@ -8,6 +8,7 @@ from users import models as user_models
 
 
 class Photo(core_models.TimeStampModel):
+
     """Photo Model Definition"""
     CAT_HAK = "학치"
     CAT_BBI = "삐약이"
@@ -21,7 +22,7 @@ class Photo(core_models.TimeStampModel):
     )
     cat_name = models.CharField(
         choices=CAT_CHOICES, max_length=4, null=False)
-    description = models.TextField(null=False)
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.description
@@ -35,6 +36,6 @@ class Photo(core_models.TimeStampModel):
 
 
 class File(core_models.TimeStampModel):
-    file = models.ImageField(upload_to="cat_photos")
+    file = models.ImageField(upload_to="cat_photos", null=True, blank=True)
     photo = models.ForeignKey(
         "Photo", related_name="photos", on_delete=models.CASCADE)

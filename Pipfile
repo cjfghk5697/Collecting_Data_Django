@@ -29,6 +29,7 @@ django = "==2.2.5"
 django-seed = "*"
 psycopg2 = "*"
 numpy = "*"
+pillow = "*"
 
 [dev-packages]
 

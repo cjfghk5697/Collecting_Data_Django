@@ -7,5 +7,5 @@ app_name = "photos"
 urlpatterns = [
     path("<int:pk>", views.PhotoDetail.as_view(), name="detail"),
     path("search/", views.SearchView.as_view(), name="search"),
-    path("upload/", views.UploadView.as_view(), name="upload"),
+    path("upload/", views.create, name="upload"),
 ]

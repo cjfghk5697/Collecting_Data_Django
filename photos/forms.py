@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.widgets import ChoiceWidget, FileInput
+from django.shortcuts import redirect
 from . import models
 
 
@@ -9,11 +10,13 @@ class SearchForm(forms.Form):
 
 class FileUploadForm(forms.Form):
     class Meta:
-        model = models.File
+        model = models.Photo
 
         fields = ('file')
         widgets = {
+            "cat_name": forms.ChoiceField(),
             "file": forms.ImageField(),
+            "description": forms.TextInput(),
         }
     CAT_HAK = "학치"
     CAT_BBI = "삐약이"
@@ -29,13 +32,19 @@ class FileUploadForm(forms.Form):
         choices=CAT_CHOICES)
     file = forms.ImageField(widget=forms.FileInput(
         attrs={"placeholder": "File"}))
-    title = forms.CharField(widget=forms.TextInput(attrs={
-                            "placeholder": "Title"}))
+    description = forms.CharField(widget=forms.TextInput(attrs={
+        "placeholder": "description"}))
 
     def save(self, *args, **kwargs):
-        photo = super().save(commit=False)
+        model = models.Photo
+
+        Filemodel = models.File()
         cat_name = self.cleaned_data.get("cat_name")
-        file = self.cleaned_data.get("file")
-        photo.file = file
-        photo.set_cat_name(cat_name)
-        photo.save()
+        description = self.cleaned_data.get("description")
+        model.cat_name = cat_name
+        model.description = description
+        model.save()
+        Filemodel.photo = models.Photo
+        Filemodel.file = self.file
+        Filemodel.save()
+        return redirect("photos/photo_list.html")
