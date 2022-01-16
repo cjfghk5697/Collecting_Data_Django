@@ -48,15 +48,10 @@ class SearchView(View):
         return render(request, "photos/search.html", {"form": form})
 
 
-class UploadView(FormView):
-    template_name = "photos/upload.html"
-    form_class = forms.FileUploadForm
-
-    success_url = reverse_lazy("core:cats")
-
-
 def create(request):
+
     if(request.method == 'POST'):
+
         post = Photo()
         post.cat_name = request.POST['cat_name']
         post.description = request.POST['description']
